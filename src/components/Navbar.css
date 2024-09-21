@@ -1,0 +1,23 @@
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0px;
+    background: linear-gradient(to right, #9796f0, #fbc7d4);
+    /* background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);  */
+    color: white;
+    
+}
+.navbar h1{
+    border-bottom: 1px solid;
+    padding: 10px 0px;
+}
+.navbar_content{
+    display: flex;
+    gap: 30px;
+}
+.navbar_content a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}

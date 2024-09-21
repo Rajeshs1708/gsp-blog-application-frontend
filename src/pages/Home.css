@@ -1,0 +1,25 @@
+/* src/App.css */
+.home {
+    text-align: center;
+    padding: 20px;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .home h1{
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  
+  .home p {
+    width: 60%;
+    font-size: 20px;
+    line-height: 1.1;
+    color: #555;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+  }

@@ -1,0 +1,128 @@
+h2 {
+    text-align: center;
+    margin: 40px;
+  }
+  
+  .new-post {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  input,
+  textarea {
+    display: block;
+    margin: 10px auto;
+    width: 60%;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  textarea {
+    height: 200px;
+  }
+  
+  .post_button_grp {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+  }
+  
+  .create_button {
+    padding: 10px 20px;
+    background: linear-gradient(to right, #2193b0, #6dd5ed);
+    border-radius: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+  
+  }
+  
+  .update_button {
+    padding: 10px 20px;
+    background: linear-gradient(to right, #1f4037, #99f2c8);
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  
+  }
+  
+  .cancel_button {
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  
+  }
+  
+  .posts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: 75vh;
+    overflow-y: auto;
+    gap: 20px;
+  
+  }
+  
+  .post {
+    border: 1px solid #ccc;
+    padding: 30px;
+    width: 70%;
+    margin-bottom: 20px;
+  }
+  
+  .post_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .post_icon_container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .post_edit_icon {
+    cursor: pointer;
+    color: green;
+  
+  }
+  
+  .post_delete_icon {
+    cursor: pointer;
+    color: red;
+  
+  }
+  
+  .post_img_container {
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
+  }
+  
+  .post_img {
+    width: 100%;
+    height: 200px;
+  }
+  
+  .post_date {
+    font-size: 12px;
+    padding: 10px 0px;
+  }
+  
+  .post_description {
+    font-size: 15px;
+    padding: 10px 0px;
+  
+  }
