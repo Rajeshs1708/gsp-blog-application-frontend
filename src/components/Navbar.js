@@ -8,8 +8,8 @@ const Navbar = () => {
             <h1>Blog App</h1>
             <div className='navbar_content'>
                 <Link to="/">Home</Link>
-                <Link to="/content">Content</Link>
-                <Link to="/file-upload">File Upload</Link>
+                <Link to="/content">Blogs</Link>
+                {/* <Link to="/file-upload">File Upload</Link> */}
             </div>
         </nav>
     );

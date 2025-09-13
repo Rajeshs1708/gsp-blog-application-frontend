@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import Content from './pages/Content';
+import Home from './pages/home/Home';
+import Content from './pages/content/Content';
 import './App.css';
 import Navbar from './components/Navbar';
-import FileUpload from './pages/FileUpload';
+import FileUpload from './pages/fileUpload/FileUpload';
 
 function App() {
   return (

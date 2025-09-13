@@ -3,7 +3,7 @@ import axios from 'axios';
 import "./Content.css"
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
-import DeleteModel from '../components/DeleteModel';
+import DeleteModel from '../../components/DeleteModel';
 import toast, { Toaster } from 'react-hot-toast';
 
 const Content = () => {
@@ -21,7 +21,9 @@ const Content = () => {
     const notifyError = (message) => toast.error(message);
 
     useEffect(() => {
-        handleAllposts();
+        handleAllPosts();
+
+        return () => setBlogs([]);
     }, []);
 
 
@@ -30,13 +32,16 @@ const Content = () => {
 
 
     // Fetch all posts
-    const handleAllposts = async () => {
+    const handleAllPosts = async () => {
         await axios.get(`${process.env.REACT_APP_BASE_URL}/get-blogs`)
             .then(response => {
-                setBlogs(response.data)
+                setBlogs(response.data.data)
                 console.log(response.data);
             })
-            .catch(error => console.error(error));
+            .catch(error => {
+                console.error(error.response.data.message)
+                notifyError(`${error.response.data.message}`)
+            });
     }
 
 
@@ -50,15 +55,19 @@ const Content = () => {
         if (title !== "" && description !== "" && image !== "") {
             await axios.post(`${process.env.REACT_APP_BASE_URL}/add-blog`, newPost)
                 .then(response => {
-                    console.log(response.data);
-                    handleAllposts();
+                    console.log(response.data.data);
+                    setBlogs((preBlogs) => [response.data.data, ...preBlogs])
                     notify("Blog successfully posted!")
-                })
-                .catch(error => console.error(error));
+                    setTitle('');
+                    setDescription('');
+                    setImage('');
 
-            setTitle('');
-            setDescription('');
-            setImage('');
+                })
+                .catch(error => {
+                    console.error(error.response.data.message)
+                    notifyError(`${error.response.data.message}`)
+                });
+
         } else {
             notifyError("Empty fields!")
         }
@@ -96,18 +105,25 @@ const Content = () => {
 
         await axios.put(`${process.env.REACT_APP_BASE_URL}/edit-blog/${id}`, editPost)
             .then(response => {
-                if (response.data) {
-                    handleAllposts();
+                if (response.data.data) {
+                    console.log(response.data.data)
+                    // handleAllPosts();
+                    // Update the posts state locally
+                    setBlogs((prevPosts) =>
+                        prevPosts.map((post) => (post._id === id ? { ...post, ...response.data.data } : post))
+                    );
                     notify("Blog Successfully Updated!");
                     setEdit(false);
-
+                    setTitle('');
+                    setDescription('');
+                    setImage('');
                 }
             })
-            .catch(error => console.error(error));
+            .catch(error => {
+                console.error(error.response.data.message)
+                notifyError(`${error.response.data.message}`)
+            });
 
-        setTitle('');
-        setDescription('');
-        setImage('');
     }
 
     // Handle delete post
@@ -123,16 +139,19 @@ const Content = () => {
             setView(false)
             axios.delete(`${process.env.REACT_APP_BASE_URL}/delete-blog/${id}`)
                 .then((response) => {
-                    console.log(response);
-                    handleAllposts();
+                    console.log(response.data);
+                    setBlogs((prevPosts) => prevPosts.filter((post) => post._id !== id));
                     notify("Blog Successfully Deleted!")
                 })
-                .catch(error => console.error(error));
+                .catch(error => {
+                    console.error(error.response.data.message)
+                    notifyError(`${error.response.data.message}`)
+                });
         }
     }
 
 
-    
+
     const handleDate = (dateString) => {
         // Convert to Date object
         const date = new Date(dateString);
